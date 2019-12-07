@@ -1,9 +1,9 @@
 <script>
-	import Header from './component/Header.svelte';
-	import Footer from './component/Footer.svelte';
+  import Todos from './Todo.svelte';
 </script>
 
 <div id="app">
-  <Header />
-  <Footer />
+  
+  <Todos />
+  
 </div>

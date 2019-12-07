@@ -3,6 +3,7 @@
     {menu:'Home', url:''},
     {menu:'Profile', url:''},
     {menu:'Article', url:''},
+    {menu:'Article2', url:''},
   ]
 </script>
 <header id="header">
