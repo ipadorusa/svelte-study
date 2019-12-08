@@ -1,37 +1,22 @@
 <script>
-  import '../css/todo.css';
-
-  let items = [
-    { id: 1, name: "Milk", done: false },
-    { id: 2, name: "Bread", done: true },
-    { id: 3, name: "Eggs", done: false }
-  ];
-  const remove = item => {
-    items = items.filter(i => i !== item);
+  import { itemStore } from "../store/store";
+  const handleRemoveItem = item => {
+    itemStore.removeItem(item);
   };
-  let name = "";
-  const addItem = (e) => {
-    e.preventDefault();
-    items = [...items, 
-      {
-        id: Math.random(),
-        name,
-        done: false
-      }
-    ]
-  }
 </script>
-<h1>Grocery List 🗒️</h1>
-<form on:submit={addItem}>
-  <label for="name">Add an item</label>
-  <input id="name" type="text" bind:value={name} />
-</form>
+<style>
+  ul {
+    list-style-type: none;
+  }
+</style>
 <ul>
-    {#each items as item}
-      <li class:done={item.done}>
-        <input type="checkbox" bind:checked={item.done} />
-        <span>{item.name}</span>
-        <button on:click={() => remove(item)}>&times;</button>
-      </li>
-    {/each}
-  </ul>
+  {#each $itemStore as item}
+    <li>
+      {item}
+      <button on:click={() => handleRemoveItem(item)}>Remote Item</button>
+    </li>
+  {/each}
+  {#if $itemStore.length === 0}
+    <div>There is not any item added. Please add one</div>
+  {/if}
+</ul>
