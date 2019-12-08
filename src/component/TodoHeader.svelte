@@ -1,14 +1,24 @@
 <script>
   import { onMount } from "svelte";
   import { itemStore } from "../store/store";
+
+  const getList = async () => {
+    const res = await fetch('https://bookmarker-cbbb9.firebaseio.com/')
+    .then(response => response.json())
+    .then(json => console.log(json))
+  }
+
+
   let value;
   onMount(() => {
-    value = "";
+    getList();
   });
   const handleAddItem = () => {
     itemStore.addItem(value);
     value = "";
   };
+
+  
 </script>
 <style>
   .disabled {
